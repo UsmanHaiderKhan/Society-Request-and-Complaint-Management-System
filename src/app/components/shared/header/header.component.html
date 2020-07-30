@@ -1,0 +1,34 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark success-color">
+  <!-- Navbar brand -->
+  <mdb-navbar-brand
+    ><a class="navbar-brand" href="#">T & G</a></mdb-navbar-brand
+  >
+
+  <!-- Collapsible content -->
+  <links>
+    <!-- Links -->
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item" *ngFor="let navbar of navBarItems">
+        <a
+          class="nav-link"
+          (click)="onSelected(navbar.link)"
+          [ngClass]="{ active: currentSelected === navbar.link }"
+          routerLink="{{ navbar.link }}"
+          >{{ navbar.name }}
+        </a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <!-- Search form -->
+    <div class="my-0">
+      <a routerLink="admin">
+        <i class="fa fa-user-circle-o text-white">&nbsp; </i
+        ><span class="user-text">UserName</span>
+      </a>
+    </div>
+  </links>
+  <!-- Collapsible content -->
+</mdb-navbar>
+<!--/.Navbar-->
