@@ -1,0 +1,8 @@
+@import "variables";
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: $dark-green;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(6, 233, 63, 0.25);
+}

@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+      <!-- Default form subscription -->
+      <div class="text-center border border-light p-5 shadow-sm">
+        <p class="h4 mb-4">Get Register Your Request</p>
+        <p>
+          As Soon as Poosible we try to complete your request.ThankYou!
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <!--Full Name -->
+            <input
+              type="text"
+              name="fullname"
+              id="defaultSubscriptionFormName"
+              class="form-control mb-4"
+              placeholder="FullName"
+              [(ngModel)]="fullname"
+            />
+          </div>
+          <div class="col-md-6">
+            <!-- Email -->
+            <input
+              type="email"
+              name="email"
+              id="defaultSubscriptionFormEmail"
+              class="form-control mb-4"
+              placeholder="E-mail"
+              [(ngModel)]="email"
+            />
+          </div>
+        </div>
+
+        <!-- Address -->
+        <input
+          type="text"
+          name="address"
+          id="defaultSubscriptionFormAddress"
+          class="form-control mb-4"
+          placeholder="Address"
+          [(ngModel)]="address"
+        />
+        <div class="row">
+          <div class="col-md-6">
+            <!-- PhoneNumber -->
+            <input
+              type="number"
+              name="phonenumber"
+              id="defaultSubscriptionFormPhonenumber"
+              class="form-control mb-4"
+              placeholder="Phone Number"
+              [(ngModel)]="phonenumber"
+            />
+          </div>
+          <div class="col-md-6">
+            <!-- Request Type -->
+            <select
+              class="form-control mb-4"
+              [(ngModel)]="requestType"
+              name="requestType"
+            >
+              <option value="disabled" disabled
+                >-- Select Request-Type --</option
+              >
+              <option
+                *ngFor="let option of optionsSelect"
+                value="{{ option.value }}"
+                id="defaultSubscriptionFormRequestType"
+                >{{ option.label }}</option
+              >
+            </select>
+          </div>
+        </div>
+
+        <!-- Do Request -->
+        <textarea
+          rows="8"
+          name="requestDetails"
+          class="form-control"
+          id="defaultSubscriptionFormRequestDetails"
+          placeholder="Write Your Request"
+          [(ngModel)]="requestDetails"
+        ></textarea>
+        <!-- Sign in button -->
+        <button
+          mdbBtn
+          class="bg-success"
+          (click)="submitRequest()"
+          class="mt-4"
+        >
+          Sign in
+        </button>
+        <div class="form-group">
+          <p class="info">{{ message }}</p>
+        </div>
+      </div>
+      <!-- Default form subscription -->
+    </div>
+  </div>
+</div>
