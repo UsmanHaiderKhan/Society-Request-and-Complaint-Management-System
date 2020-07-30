@@ -1,0 +1,28 @@
+@import "variables";
+
+#home {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/images/slide01.jpg");
+  .banner-container {
+    padding: 225px 0 190px 0;
+
+    .main-heading {
+      font-size: 50px;
+      color: $light-color;
+      font-family: $primary-font-bold;
+    }
+    .sub-heading {
+      font-size: 25px;
+      color: $primary-color;
+      font-family: $primary-font-medium;
+    }
+    .main-desc {
+      font-size: 18px;
+      color: $light-grey;
+      font-family: $primary-font-regular;
+    }
+  }
+}
