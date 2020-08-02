@@ -1,0 +1,41 @@
+@import "variables";
+.mat-toolbar {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+}
+.success {
+  background-color: $dark-green;
+  .center {
+    justify-content: center;
+    margin: 0 auto;
+    .active {
+      background-color: $secondary-color;
+      margin: 14px 7px;
+      padding: 14px 10px;
+      border-radius: 0;
+      font-size: 16px;
+    }
+    a {
+      color: $light-color;
+      font-size: 16px;
+      font-family: $primary-font-medium;
+      &:hover {
+        background-color: $secondary-color;
+        margin: 14px 7px;
+        padding: 14px 10px;
+        border-radius: 0;
+        text-decoration: none;
+        color: $light-color;
+      }
+    }
+  }
+  .account-text {
+    font-size: 16px;
+    font-family: $primary-font-medium;
+    &:hover {
+      text-decoration: none;
+      color: $light-color;
+    }
+  }
+}

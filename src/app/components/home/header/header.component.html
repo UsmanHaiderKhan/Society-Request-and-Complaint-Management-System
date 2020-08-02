@@ -1,0 +1,16 @@
+<mat-toolbar class="mat-elevation-z3 success">
+  <span><mat-icon>eco</mat-icon>T & G</span>
+  <div class="center">
+    <a
+      mat-button
+      *ngFor="let navbar of navBarItems"
+      (click)="onSelected(navbar.link)"
+      [ngClass]="{ active: currentSelected === navbar.link }"
+      routerLink="{{ navbar.link }}"
+      >{{ navbar.name }}
+    </a>
+  </div>
+  <a mat-button routerLink="/admin" class="account-text"
+    ><mat-icon>account_circle</mat-icon> User Account</a
+  >
+</mat-toolbar>
