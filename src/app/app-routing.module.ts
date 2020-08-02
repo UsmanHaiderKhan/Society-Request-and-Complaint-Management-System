@@ -6,6 +6,7 @@ import { RequestComponent } from './components/home/request/request.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ReciveRequestComponent } from './components/admin/recive-request/recive-request.component';
 import { ReciveComplainComponent } from './components/admin/recive-complain/recive-complain.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -27,15 +28,23 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    children: [
+      { path: '', component: DashboardComponent },
+      {
+        path: 'reciverequest',
+        component: ReciveRequestComponent,
+      },
+      {
+        path: 'recivecomplain',
+        component: ReciveComplainComponent,
+      },
+      {
+        path: '**',
+        redirectTo: '',
+      },
+    ],
   },
-  {
-    path: 'admin/reciverequest',
-    component: ReciveRequestComponent,
-  },
-  {
-    path: 'admin/recivecomplain',
-    component: ReciveComplainComponent,
-  },
+
   {
     path: '**',
     redirectTo: '',
