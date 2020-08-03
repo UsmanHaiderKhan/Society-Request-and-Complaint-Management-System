@@ -5,16 +5,16 @@
 export const environment = {
   production: false,
   // Your web app's Firebase configuration
-  // firebase: {
-  //   apiKey: 'AIzaSyDs8XCIrJ1Emqg9V5Kk9ViYpdBqbrc7AcQ',
-  //   authDomain: 'complaintmanagementsyste-e927a.firebaseapp.com',
-  //   databaseURL: 'https://complaintmanagementsyste-e927a.firebaseio.com',
-  //   projectId: 'complaintmanagementsyste-e927a',
-  //   storageBucket: 'complaintmanagementsyste-e927a.appspot.com',
-  //   messagingSenderId: '1017477332778',
-  //   appId: '1:1017477332778:web:5cd7e9084dcda89d4fa853',
-  //   measurementId: 'G-86FFLGM5RC',
-  // },
+  firebase: {
+    apiKey: 'AIzaSyDs8XCIrJ1Emqg9V5Kk9ViYpdBqbrc7AcQ',
+    authDomain: 'complaintmanagementsyste-e927a.firebaseapp.com',
+    databaseURL: 'https://complaintmanagementsyste-e927a.firebaseio.com',
+    projectId: 'complaintmanagementsyste-e927a',
+    storageBucket: 'complaintmanagementsyste-e927a.appspot.com',
+    messagingSenderId: '1017477332778',
+    appId: '1:1017477332778:web:5cd7e9084dcda89d4fa853',
+    measurementId: 'G-86FFLGM5RC',
+  },
 };
 
 /*
