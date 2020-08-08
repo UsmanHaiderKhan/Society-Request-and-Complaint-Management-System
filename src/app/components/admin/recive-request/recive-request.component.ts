@@ -48,7 +48,6 @@ export class ReciveRequestComponent implements OnInit {
   public deleteRequest(requestId) {
     this.operationService.deleteRequestData(requestId);
   }
-
   public updateRequest(recordRequest) {
     let request = {};
     request['fullname'] = recordRequest.editfullname;
@@ -56,7 +55,7 @@ export class ReciveRequestComponent implements OnInit {
     request['phonenumber'] = recordRequest.editphonenumber;
     request['address'] = recordRequest.editaddress;
     request['requestType'] = recordRequest.editrequestType;
-    request['questDetails'] = recordRequest.editrequestDetails;
+    request['requestDetails'] = recordRequest.editrequestDetails;
     // here calling service
     this.operationService.updateRequestData(recordRequest.id, request);
     recordRequest.isedit = false;
