@@ -15,7 +15,6 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { RequestComponent } from './components/home/request/request.component';
 import { ComplainComponent } from './components/home/complain/complain.component';
-import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ReciveRequestComponent } from './components/admin/recive-request/recive-request.component';
 import { ReciveComplainComponent } from './components/admin/recive-complain/recive-complain.component';
@@ -23,6 +22,7 @@ import { OperationService } from './components/shared/services/operation.service
 import { ComplainService } from './components/shared/services/complain.service';
 import { from } from 'rxjs';
 import { ModalComponent } from './components/admin/modal/modal.component';
+import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
 
 // Database Connectino Method
 var firebaseConfig = {
@@ -43,11 +43,11 @@ var firebaseConfig = {
     FooterComponent,
     RequestComponent,
     ComplainComponent,
-    SidebarComponent,
     AdminComponent,
     ReciveRequestComponent,
     ReciveComplainComponent,
     ModalComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

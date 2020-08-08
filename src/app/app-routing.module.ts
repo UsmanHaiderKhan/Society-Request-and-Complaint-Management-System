@@ -29,11 +29,11 @@ const routes: Routes = [
     component: AdminComponent,
   },
   {
-    path: 'reciverequest',
+    path: 'admin/reciverequest',
     component: ReciveRequestComponent,
   },
   {
-    path: 'recivecomplain',
+    path: 'admin/recivecomplain',
     component: ReciveComplainComponent,
   },
   {
