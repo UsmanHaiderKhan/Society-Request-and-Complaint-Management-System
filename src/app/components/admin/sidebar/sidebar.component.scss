@@ -1,0 +1,59 @@
+@import "variables";
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 270px;
+  background-color: $light-color;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  box-shadow: -9px 15px 13px 2px $black-color;
+}
+
+.sidebar a {
+  display: block;
+  color: $black-color;
+  padding: 16px 28px;
+  margin: 0px 0 8px 0px;
+  text-decoration: none;
+}
+.sidebar a.active {
+  background-color: #007e33;
+
+  color: $light-color;
+  border-left: 5px solid $black-color;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #007e33;
+  border-left: 5px solid $black-color;
+  color: $light-color;
+  transition: all 0.5s ease-in-out;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
