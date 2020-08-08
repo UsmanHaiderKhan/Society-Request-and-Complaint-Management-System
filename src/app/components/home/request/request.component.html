@@ -72,12 +72,20 @@
             </select>
           </div>
         </div>
-
-        <!-- Do Request -->
+        <!-- Upload File -->
+        <!-- <div class="form-group">
+          <input
+            type="file"
+            class="form-control"
+            (change)="selectedPhoto($event)"
+          /> 
+        
+        </div>-->
+        <!-- Detail Request -->
         <textarea
           rows="8"
           name="requestDetails"
-          class="form-control"
+          class="form-control mt-4"
           id="defaultSubscriptionFormRequestDetails"
           placeholder="Write Your Request"
           [(ngModel)]="requestDetails"
@@ -85,11 +93,12 @@
         <!-- Sign in button -->
         <button
           mdbBtn
-          class="bg-success"
+          color="success"
+          block="true"
           (click)="submitRequest()"
           class="mt-4"
         >
-          Sign in
+          Submit Request
         </button>
         <div class="form-group">
           <p class="info">{{ message }}</p>

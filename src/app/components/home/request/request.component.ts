@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OperationService } from '../../shared/services/operation.service';
-
+interface FeaturedPhotosUrl {
+  url1?: string;
+  url2?: string;
+}
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -8,6 +11,7 @@ import { OperationService } from '../../shared/services/operation.service';
 })
 export class RequestComponent implements OnInit {
   optionsSelect: Array<any>;
+
   request: string;
   fullname: string;
   email: string;
@@ -49,4 +53,13 @@ export class RequestComponent implements OnInit {
         console.log(error);
       });
   }
+  // selectedPhoto(event: any) {
+  //   const file: File = event.target.files[0];
+  //   const metaData = { contentType: file.type };
+  //   const storeageRef: firebase.storage.Reference = firebase
+  //     .storage()
+  //     .ref('/photo/featured/urls');
+  //   storeageRef.put(file, metaData);
+  //   console.log('Uploading: ' + file.name);
+  // }
 }
