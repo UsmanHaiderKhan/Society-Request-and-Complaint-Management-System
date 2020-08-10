@@ -1,4 +1,5 @@
-<div class="container">
+<app-header></app-header>
+<div class="container" id="request">
   <div class="row justify-content-center mt-5">
     <div class="col-md-10">
       <!-- Default form subscription -->
@@ -7,102 +8,105 @@
         <p>
           As Soon as Poosible we try to complete your request.ThankYou!
         </p>
-        <div class="row">
-          <div class="col-md-6">
-            <!--Full Name -->
-            <input
-              type="text"
-              name="fullname"
-              id="defaultSubscriptionFormName"
-              class="form-control mb-4"
-              placeholder="FullName"
-              [(ngModel)]="fullname"
-            />
+        <form (submit)="submitRequest()" [form]>
+          <div class="row">
+            <div class="col-md-6">
+              <!--Full Name -->
+              <input
+                type="text"
+                name="fullname"
+                id="defaultSubscriptionFormName"
+                class="form-control mb-4"
+                placeholder="FullName"
+              />
+            </div>
+            <div class="col-md-6">
+              <!-- Email -->
+              <input
+                type="email"
+                name="email"
+                id="defaultSubscriptionFormEmail"
+                class="form-control mb-4"
+                placeholder="E-mail"
+              />
+            </div>
           </div>
-          <div class="col-md-6">
-            <!-- Email -->
-            <input
-              type="email"
-              name="email"
-              id="defaultSubscriptionFormEmail"
-              class="form-control mb-4"
-              placeholder="E-mail"
-              [(ngModel)]="email"
-            />
-          </div>
-        </div>
-
-        <!-- Address -->
-        <input
-          type="text"
-          name="address"
-          id="defaultSubscriptionFormAddress"
-          class="form-control mb-4"
-          placeholder="Address"
-          [(ngModel)]="address"
-        />
-        <div class="row">
-          <div class="col-md-6">
-            <!-- PhoneNumber -->
-            <input
-              type="number"
-              name="phonenumber"
-              id="defaultSubscriptionFormPhonenumber"
-              class="form-control mb-4"
-              placeholder="Phone Number"
-              [(ngModel)]="phonenumber"
-            />
-          </div>
-          <div class="col-md-6">
-            <!-- Request Type -->
-            <select
-              class="form-control mb-4"
-              [(ngModel)]="requestType"
-              name="requestType"
-            >
-              <option value="disabled" disabled
-                >-- Select Request-Type --</option
-              >
-              <option
-                *ngFor="let option of optionsSelect"
-                value="{{ option.value }}"
-                id="defaultSubscriptionFormRequestType"
-                >{{ option.label }}</option
-              >
-            </select>
-          </div>
-        </div>
-        <!-- Upload File -->
-        <!-- <div class="form-group">
+          <!-- Address -->
           <input
-            type="file"
-            class="form-control"
-            (change)="selectedPhoto($event)"
-          /> 
-        
-        </div>-->
-        <!-- Detail Request -->
-        <textarea
-          rows="8"
-          name="requestDetails"
-          class="form-control mt-4"
-          id="defaultSubscriptionFormRequestDetails"
-          placeholder="Write Your Request"
-          [(ngModel)]="requestDetails"
-        ></textarea>
-        <!-- Sign in button -->
-        <button
-          mdbBtn
-          color="success"
-          block="true"
-          (click)="submitRequest()"
-          class="mt-4"
-        >
-          Submit Request
-        </button>
-        <div class="form-group">
-          <p class="info">{{ message }}</p>
-        </div>
+            type="text"
+            name="address"
+            id="defaultSubscriptionFormAddress"
+            class="form-control mb-4"
+            placeholder="Address"
+          />
+          <div class="row">
+            <div class="col-md-6">
+              <!-- PhoneNumber -->
+              <input
+                type="number"
+                name="phonenumber"
+                id="defaultSubscriptionFormPhonenumber"
+                class="form-control mb-4"
+                placeholder="Phone Number"
+              />
+            </div>
+            <div class="col-md-6">
+              <!-- Request Type -->
+              <select class="form-control mb-4" name="requestType">
+                <option value="disabled" disabled
+                  >-- Select Request-Type --</option
+                >
+                <option
+                  *ngFor="let option of optionsSelect"
+                  value="{{ option.value }}"
+                  id="defaultSubscriptionFormRequestType"
+                  >{{ option.label }}</option
+                >
+              </select>
+            </div>
+          </div>
+          <!-- File-Upload -->
+          <div class="row justify-content-center">
+            <div class="form-group">
+              <div class="img-border mx-auto shadow">
+                <img
+                  [src]="imageUrl"
+                  alt=""
+                  class="img-size"
+                  (click)="fileUploader.click()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="file"
+              accept="image/*"
+              name="imageUrl"
+              class="form-control"
+              #fileUploader
+              (change)="showImagePreview($event)"
+            />
+          </div>
+          <!-- Detail Request -->
+          <textarea
+            rows="8"
+            name="requestDetails"
+            class="form-control mt-4"
+            id="defaultSubscriptionFormRequestDetails"
+            placeholder="Write Your Request"
+          ></textarea>
+          <!-- Sign in button -->
+          <button
+            mat-rasied-button
+            color="success"
+            block="true"
+            (click)="submitRequest()"
+            class="mt-4"
+          >
+            Submit Request
+          </button>
+        </form>
       </div>
       <!-- Default form subscription -->
     </div>

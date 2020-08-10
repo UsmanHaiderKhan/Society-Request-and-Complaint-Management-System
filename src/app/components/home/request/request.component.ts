@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OperationService } from '../../shared/services/operation.service';
-interface FeaturedPhotosUrl {
-  url1?: string;
-  url2?: string;
-}
+import { AngularFireStorage } from '@angular/fire/storage';
+import { NotificationService } from '../../shared/services/notification.service';
+import { finalize } from 'rxjs/operators';
+
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -11,16 +11,13 @@ interface FeaturedPhotosUrl {
 })
 export class RequestComponent implements OnInit {
   optionsSelect: Array<any>;
-
-  request: string;
-  fullname: string;
-  email: string;
-  address: string;
-  phonenumber: number;
-  requestType: string;
-  requestDetails: string;
-  message: string;
-  constructor(public operationService: OperationService) {}
+  selectedImage: any = null;
+  imageUrl = '../../../../assets/images/avatar.png';
+  constructor(
+    public operationService: OperationService,
+    public notificationService: NotificationService,
+    private storage: AngularFireStorage
+  ) {}
 
   ngOnInit() {
     this.optionsSelect = [
@@ -30,36 +27,28 @@ export class RequestComponent implements OnInit {
     ];
   }
   submitRequest() {
-    let Request = {};
-    Request['fullname'] = this.fullname;
-    Request['email'] = this.email;
-    Request['address'] = this.address;
-    Request['phonenumber'] = this.phonenumber;
-    Request['requestType'] = this.requestType;
-    Request['requestDetails'] = this.requestDetails;
-    this.operationService
-      .submitRequest(Request)
-      .then((res) => {
-        this.fullname = '';
-        this.email = '';
-        this.address = '';
-        this.phonenumber = undefined;
-        this.requestType = '';
-        this.requestDetails = '';
-        console.log(res);
-        this.message = 'Request has been Submitted Successfully.';
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (this.operationService.form.valid) {
+      if (!this.operationService.form.get('$key').value)
+        this.operationService.submitRequest(this.operationService.form.value);
+      else {
+        this.operationService.updateRequest(this.operationService.form.value);
+      }
+      this.operationService.form.reset();
+      this.operationService.onInitialLizeFormGroup();
+      this.notificationService.openSnackBar('Submitted SuccessFully');
+      this.onClose();
+    }
   }
-  // selectedPhoto(event: any) {
-  //   const file: File = event.target.files[0];
-  //   const metaData = { contentType: file.type };
-  //   const storeageRef: firebase.storage.Reference = firebase
-  //     .storage()
-  //     .ref('/photo/featured/urls');
-  //   storeageRef.put(file, metaData);
-  //   console.log('Uploading: ' + file.name);
-  // }
+  onClose() {}
+  showImagePreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => (this.imageUrl = e.target.result);
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    } else {
+      this.imageUrl = '../../../../assets/images/avatar.png';
+      this.selectedImage = null;
+    }
+  }
 }
