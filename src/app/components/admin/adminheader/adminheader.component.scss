@@ -1,0 +1,66 @@
+@import "variables";
+.success {
+  background-color: $dark-green;
+  .admin-logo {
+    color: $light-color;
+    &:hover {
+      text-decoration: none;
+      color: $light-color;
+    }
+  }
+
+  .center {
+    justify-content: center;
+    margin: 0 auto;
+    .active {
+      background-color: $secondary-color;
+      margin: 14px 7px;
+      padding: 14px 10px;
+      border-radius: 0;
+      font-size: 16px;
+    }
+    a {
+      color: $light-color;
+      font-size: 16px;
+      font-family: $primary-font-medium;
+      &:hover {
+        background-color: $secondary-color;
+        margin: 14px 7px;
+        padding: 14px 10px;
+        border-radius: 0;
+        text-decoration: none;
+        color: $light-color;
+      }
+    }
+  }
+  .bell-icon {
+    &:hover {
+      color: $light-color;
+      text-decoration: none;
+    }
+  }
+  .mat-icon {
+    height: 26px;
+    width: 37px !important;
+    color: $light-color;
+  }
+  .mat-badge-medium .mat-badge-content {
+    width: 18px !important;
+    height: 18px !important;
+    line-height: 18px !important;
+  }
+}
+
+::ng-deep .mat-badge-medium .mat-badge-content {
+  width: 19px !important;
+  height: 19px !important;
+  line-height: 20px !important;
+}
+::ng-deep
+  .mat-badge-medium.mat-badge-overlap.mat-badge-after
+  .mat-badge-content {
+  right: 1px;
+}
+::ng-deep .mat-badge-medium.mat-badge-above .mat-badge-content {
+  top: -8px;
+}
