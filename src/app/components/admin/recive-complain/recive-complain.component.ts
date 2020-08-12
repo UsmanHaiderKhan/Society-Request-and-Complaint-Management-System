@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ComplainService } from '../../shared/services/complain.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-recive-complain',
@@ -9,7 +10,10 @@ import { ComplainService } from '../../shared/services/complain.service';
 export class ReciveComplainComponent implements OnInit {
   complain: any;
   optionsSelect: Array<any>;
-  constructor(public complainService: ComplainService) {}
+  constructor(
+    public complainService: ComplainService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -18,6 +22,14 @@ export class ReciveComplainComponent implements OnInit {
       { value: 'Severe', label: 'Severe' },
       { value: 'Urgent', label: 'Urgent' },
     ];
+  }
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    // dialogConfig.disableClose = true;
+    dialogConfig.width = '70%';
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(ReciveComplainComponent, dialogConfig);
   }
   public loadData() {
     this.complainService.getAllComplains().subscribe((data) => {

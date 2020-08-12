@@ -1,6 +1,21 @@
+@import "variables";
 .table {
-  font-size: 14px;
+  font-size: 13px;
   .icon-size {
     width: 16px;
+  }
+  .edit-btn {
+    background-color: $secondary-color;
+  }
+  .delete-btn {
+    background-color: $danger-color;
+  }
+  .mat-button {
+    margin: 0 4px;
+  }
+
+  .mat-dialog-container {
+    color: #000;
+    background: $light-color;
   }
 }
