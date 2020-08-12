@@ -26,13 +26,13 @@ export class ReciveRequestComponent implements OnInit {
       this.request = data.map((e) => {
         return {
           id: e.payload.doc.id,
-          isedit: false,
           fullname: e.payload.doc.data()['fullname'],
           email: e.payload.doc.data()['email'],
           address: e.payload.doc.data()['address'],
           phonenumber: e.payload.doc.data()['phonenumber'],
           requestType: e.payload.doc.data()['requestType'],
           requestDetails: e.payload.doc.data()['requestDetails'],
+          imageUrl: e.payload.doc.data()['imageUrl'],
         };
       });
     });
@@ -45,19 +45,8 @@ export class ReciveRequestComponent implements OnInit {
     request.editrequestType = request.requestType;
     request.editrequestDetails = request.requestDetails;
   }
-  public deleteRequest(requestId) {
-    this.operationService.deleteRequestData(requestId);
+  public deleteRequest($key: string) {
+    this.operationService.deleteRequestData($key);
   }
-  public updateRequest(recordRequest) {
-    let request = {};
-    request['fullname'] = recordRequest.editfullname;
-    request['email'] = recordRequest.editemail;
-    request['phonenumber'] = recordRequest.editphonenumber;
-    request['address'] = recordRequest.editaddress;
-    request['requestType'] = recordRequest.editrequestType;
-    request['requestDetails'] = recordRequest.editrequestDetails;
-    // here calling service
-    this.operationService.updateRequestData(recordRequest.id, request);
-    recordRequest.isedit = false;
-  }
+  public updateRequest(recordRequest) {}
 }

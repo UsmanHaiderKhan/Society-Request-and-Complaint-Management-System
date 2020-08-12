@@ -1,221 +1,50 @@
-<app-sidebar></app-sidebar>
 <!-- Main Body -->
-<div class="container">
+<div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-12">
-      <table class="table table-hover table-striped">
-        <thead>
-          <th>Full Name</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>PhoneNumber</th>
-          <th>Type</th>
-          <th>Request Details</th>
-          <th>Actions</th>
-        </thead>
-        <tbody *ngFor="let data of request">
-          <tr>
-            <td>{{ data.fullname }}</td>
-            <td>{{ data.email }}</td>
-            <td>{{ data.address }}</td>
-            <td>{{ data.phonenumber }}</td>
-            <td>{{ data.requestType }}</td>
-            <td>{{ data.requestDetails }}</td>
-            <td class="d-flex">
-              <button
-                mdbBtn
-                color="success"
-                size="sm"
-                mdbWavesEffect
-                (click)="editRequest(data)"
-                (click)="basicModal.show()"
-              >
-                <img
-                  src="../../../../assets/images/icons/edit-w.png"
-                  alt="edit.png"
-                  class="icon-size"
-                />
-              </button>
-              <button
-                mdbBtn
-                color="danger"
-                size="sm"
-                mdbWavesEffect
-                (click)="basicModals.show()"
-              >
-                <img
-                  src="../../../../assets/images/icons/delete.png"
-                  alt="delete.png"
-                  class="icon-size"
-                />
-              </button>
-            </td>
-          </tr>
-          <!-- Update Modal -->
-          <div
-            mdbModal
-            #basicModal="mdbModal"
-            class="modal fade"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="myBasicModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button
-                    type="button"
-                    class="close pull-right"
-                    aria-label="Close"
-                    (click)="basicModal.hide()"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                  <h4 class="modal-title w-100" id="myModalLabel">
-                    Modal title
-                  </h4>
-                </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <!--Full Name -->
-                      <input
-                        type="text"
-                        name="fullname"
-                        class="form-control mb-4"
-                        placeholder="FullName"
-                        [(ngModel)]="data.editfullname"
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <!-- Email -->
-                      <input
-                        type="email"
-                        name="email"
-                        class="form-control mb-4"
-                        placeholder="E-mail"
-                        [(ngModel)]="data.editemail"
-                      />
-                    </div>
-                  </div>
-                  <!-- Address -->
-                  <input
-                    type="text"
-                    name="address"
-                    class="form-control mb-4"
-                    placeholder="Address"
-                    [(ngModel)]="data.editaddress"
-                  />
-                  <div class="row">
-                    <div class="col-md-6">
-                      <!-- PhoneNumber -->
-                      <input
-                        type="number"
-                        name="phonenumber"
-                        class="form-control mb-4"
-                        placeholder="Phone Number"
-                        [(ngModel)]="data.editphonenumber"
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <!-- Request Type -->
-                      <select
-                        class="form-control mb-4"
-                        [(ngModel)]="data.editrequestType"
-                        name="requestType"
-                      >
-                        <option value="disabled" disabled
-                          >-- Select Request-Type --</option
-                        >
-                        <option
-                          *ngFor="let option of optionsSelect"
-                          value="{{ option.value }}"
-                          >{{ option.label }}</option
-                        >
-                      </select>
-                    </div>
-                  </div>
+    <div class="col-md-11 offset-md-1">
+      <table class="table table-hover table-striped" id="dataTable">
+        <th>ImageUrl</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>PhoneNumber</th>
+        <th>Type</th>
+        <th>Request Details</th>
+        <th>Actions</th>
 
-                  <!-- Do Request -->
-                  <textarea
-                    rows="8"
-                    name="requestDetails"
-                    class="form-control"
-                    placeholder="Write Your Request"
-                    [(ngModel)]="data.editrequestDetails"
-                  ></textarea>
-                  <!-- update  button -->
-                  <button
-                    mdbBtn
-                    color="success"
-                    (click)="updateRequest(data)"
-                    class="mt-4"
-                    block="true"
-                  >
-                    Update Record
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Delete Warning Modal -->
-          <div
-            mdbModal
-            #basicModals="mdbModal"
-            class="modal fade"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="myBasicModalLabels"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button
-                    type="button"
-                    class="close pull-right"
-                    aria-label="Close"
-                    (click)="basicModals.hide()"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                  <h4 class="modal-title w-100" id="myModalLabel">
-                    Delete Citizen Request
-                  </h4>
-                </div>
-                <div class="modal-body">
-                  <h4>Are You Sure You Want To Delete That Request???</h4>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    mdbBtn
-                    color="secondary"
-                    class="waves-light"
-                    aria-label="Close"
-                    (click)="basicModals.hide()"
-                    mdbWavesEffect
-                  >
-                    Close
-                  </button>
-                  <button
-                    type="button"
-                    mdbBtn
-                    color="primary"
-                    class="relative waves-light"
-                    (click)="deleteRequest(data.id)"
-                    (click)="basicModals.hide()"
-                    mdbWavesEffect
-                  >
-                    Confirm Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <tr *ngFor="let data of request">
+          <td><img [src]="data.imageUrl" alt="image" /></td>
+          <td>{{ data.fullname }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.address }}</td>
+          <td>{{ data.phonenumber }}</td>
+          <td>{{ data.requestType }}</td>
+          <td>{{ data.requestDetails }}</td>
+          <td class="d-flex">
+            <button
+              mdbBtn
+              color="success"
+              size="sm"
+              mdbWavesEffect
+              (click)="editRequest(data)"
+            >
+              <img
+                src="../../../../assets/images/icons/edit-w.png"
+                alt="edit.png"
+                class="icon-size"
+              />
+            </button>
+            <button mdbBtn color="danger" size="sm" mdbWavesEffect>
+              <img
+                src="../../../../assets/images/icons/delete.png"
+                alt="delete.png"
+                class="icon-size"
+              />
+            </button>
+          </td>
+
           <!-- body -->
-        </tbody>
+        </tr>
       </table>
     </div>
   </div>
