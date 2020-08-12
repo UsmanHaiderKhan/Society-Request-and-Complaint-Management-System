@@ -2,16 +2,19 @@
 
 #home {
   width: 100%;
+  margin-top: 63px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-image: url("../../../assets/images/slide01.jpg");
   .banner-container {
-    padding: 225px 0 190px 0;
+    // padding: 225px 0 190px 0;
+    padding: 203px 0 150px 0;
 
     .main-heading {
       font-size: 50px;
       color: $light-color;
+      line-height: 1.2;
       font-family: $primary-font-bold;
     }
     .sub-heading {
@@ -22,7 +25,15 @@
     .main-desc {
       font-size: 18px;
       color: $light-grey;
+      line-height: 1.6;
       font-family: $primary-font-regular;
+    }
+    .mat-stroked-button {
+      border: 1px solid $primary-color;
+      padding: 0 34px;
+      border-radius: 0;
+      line-height: 45px;
+      color: $primary-color;
     }
   }
 }
