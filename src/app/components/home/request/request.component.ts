@@ -20,6 +20,7 @@ export class RequestComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // this.operationService.getAllRequests();
     this.optionsSelect = [
       { value: '1', label: 'Normal' },
       { value: '2', label: 'Severe' },
@@ -30,7 +31,6 @@ export class RequestComponent implements OnInit {
   submitRequest(formValue) {
     if (this.operationService.form.valid) {
       if (!this.operationService.form.get('$key').value) {
-        // this.operationService.submitRequest(this.operationService.form.value);
         var filePath = `images/${this.selectedImage.name
           .split('.')
           .slice(0, -1)
@@ -44,23 +44,18 @@ export class RequestComponent implements OnInit {
               fileRef.getDownloadURL().subscribe((url) => {
                 formValue['imageUrl'] = url;
                 this.operationService.submitRequest(formValue);
+                this.imgSrc = '../../../../assets/images/avatar.png';
+                this.clearForm();
               });
             })
           )
           .subscribe();
       } else {
-        this.operationService.updateRequest(this.operationService.form.value);
+        this.operationService.updateRequest(formValue);
       }
-      this.operationService.form.reset();
-      this.operationService.onInitialLizeFormGroup();
-      this.notificationService.openSnackBar('Submitted SuccessFully');
-      this.onClose();
     }
   }
-  onClose() {
-    this.operationService.form.reset();
-    this.operationService.onInitialLizeFormGroup();
-  }
+
   get formControls() {
     return this.operationService.form['controls'];
   }
@@ -74,5 +69,11 @@ export class RequestComponent implements OnInit {
       this.imgSrc = '../../../../assets/images/avatar.png';
       this.selectedImage = null;
     }
+  }
+  clearForm() {
+    this.operationService.form.reset();
+    this.operationService.onInitialLizeFormGroup();
+
+    this.notificationService.openSnackBar('Submitted SuccessFully');
   }
 }

@@ -13,58 +13,94 @@
           (submit)="submitRequest(operationService.form.value)"
           [formGroup]="operationService.form"
         >
+          <input type="hidden" formControlName="$key" />
           <div class="row">
             <div class="col-md-6">
               <!--Full Name -->
-              <input
-                type="text"
-                class="form-control mb-4"
-                placeholder="FullName"
-                formControlName="fullname"
-              />
+              <mat-form-field class="example-form-field">
+                <mat-label>Full Name</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="Full Name"
+                  formControlName="fullname"
+                />
+                <mat-error
+                  *ngIf="
+                    operationService.form.controls['fullname'].errors?.required
+                  "
+                  >Name Field is Required</mat-error
+                >
+              </mat-form-field>
             </div>
             <div class="col-md-6">
               <!-- Email -->
-              <input
-                type="email"
-                class="form-control mb-4"
-                placeholder="E-mail"
-                formControlName="email"
-              />
+              <mat-form-field class="example-form-field">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+                <mat-error
+                  *ngIf="
+                    operationService.form.controls['email'].errors?.required
+                  "
+                  >Email Field is Required</mat-error
+                >
+              </mat-form-field>
             </div>
           </div>
           <!-- Address -->
-          <input
-            type="text"
-            formControlName="address"
-            class="form-control mb-4"
-            placeholder="Address"
-          />
+          <mat-form-field class="example-form-field">
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              type="address"
+              placeholder="Address"
+              formControlName="address"
+            />
+            <mat-error
+              *ngIf="operationService.form.controls['address'].errors?.required"
+              >Address Field is Required</mat-error
+            >
+          </mat-form-field>
+
           <div class="row">
             <div class="col-md-6">
               <!-- PhoneNumber -->
-              <input
-                type="number"
-                formControlName="mobile"
-                class="form-control mb-4"
-                placeholder="Phone Number"
-              />
+              <mat-form-field class="example-form-field">
+                <mat-label>Phone Number</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="Phone Number"
+                  formControlName="mobile"
+                />
+                <mat-error
+                  *ngIf="
+                    operationService.form.controls['mobile'].errors?.required
+                  "
+                  >Number Field is Required</mat-error
+                >
+              </mat-form-field>
             </div>
             <div class="col-md-6">
               <!-- Request Type -->
-              <select class="form-control mb-4" formControlName="requestType">
-                <option value="disabled" disabled
-                  >-- Select Request-Type --</option
-                >
-                <option
-                  *ngFor="let option of optionsSelect"
-                  value="{{ option.value }}"
-                  id="defaultSubscriptionFormRequestType"
-                  >{{ option.label }}</option
-                >
-              </select>
+              <mat-form-field class="example-form-field">
+                <mat-label>Request Type</mat-label>
+                <mat-select formControlName="requestType" name="requestType">
+                  <mat-option
+                    *ngFor="let os of optionsSelect"
+                    value="{{ os.value }}"
+                    >{{ os.label }}</mat-option
+                  >
+                </mat-select></mat-form-field
+              >
             </div>
           </div>
+
           <!-- File-Upload -->
           <div class="row justify-content-center">
             <div class="form-group">
@@ -78,6 +114,7 @@
               </div>
             </div>
           </div>
+
           <div class="form-group">
             <input
               type="file"
@@ -89,14 +126,31 @@
             />
           </div>
           <!-- Detail Request -->
-          <textarea
-            rows="8"
-            formControlName="requestDetail"
-            class="form-control mt-4"
-            placeholder="Write Your Request"
-          ></textarea>
+          <mat-form-field class="example-form-field">
+            <mat-label>Request Details</mat-label>
+            <textarea
+              matInput
+              rows="8"
+              type="text"
+              placeholder="Enter Your Request"
+              formControlName="requestDetail"
+            ></textarea>
+            <mat-error
+              *ngIf="
+                operationService.form.controls['requestDetail'].errors?.required
+              "
+              >Request Details Field is Required</mat-error
+            >
+          </mat-form-field>
+          <br /><br />
           <!-- Sign in button -->
-          <button mat-raised-button color="success" block="true" class="mt-4">
+          <button
+            [disabled]="operationService.form.invalid"
+            mat-raised-button
+            color="success"
+            block="true"
+            class="mt-4"
+          >
             Submit Request
           </button>
         </form>
