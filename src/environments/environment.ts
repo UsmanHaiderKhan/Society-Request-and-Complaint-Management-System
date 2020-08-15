@@ -6,14 +6,14 @@ export const environment = {
   production: false,
   // Your web app's Firebase configuration
   firebase: {
-    apiKey: 'AIzaSyDs8XCIrJ1Emqg9V5Kk9ViYpdBqbrc7AcQ',
-    authDomain: 'complaintmanagementsyste-e927a.firebaseapp.com',
-    databaseURL: 'https://complaintmanagementsyste-e927a.firebaseio.com',
-    projectId: 'complaintmanagementsyste-e927a',
-    storageBucket: 'complaintmanagementsyste-e927a.appspot.com',
-    messagingSenderId: '1017477332778',
-    appId: '1:1017477332778:web:5cd7e9084dcda89d4fa853',
-    measurementId: 'G-86FFLGM5RC',
+    apiKey: 'AIzaSyA4axD0DLj1hwXx5swQ3z-1CXpxtLdO0Ws',
+    authDomain: 'complainmanagementdb.firebaseapp.com',
+    databaseURL: 'https://complainmanagementdb.firebaseio.com',
+    projectId: 'complainmanagementdb',
+    storageBucket: 'complainmanagementdb.appspot.com',
+    messagingSenderId: '1077291119092',
+    appId: '1:1077291119092:web:ae84a22f880cb525a209a1',
+    measurementId: 'G-RY56GD1CFM',
   },
 };
 
