@@ -4,3 +4,30 @@
     width: 16px;
   }
 }
+.mat-elevation-z8 {
+  margin-top: 20px;
+}
+button {
+  margin: 0 5px;
+}
+.hide {
+  display: none;
+}
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}
+.search-field {
+  width: 60%;
+}
+
+.mat-snack-bar-container {
+  color: rgba(255, 255, 255, 0.7);
+  background-color: red !important;
+}
+
+.image-size {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}

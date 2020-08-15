@@ -1,51 +1,134 @@
 <!-- Main Body -->
-<div class="container mt-5">
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-11 offset-md-1">
-      <table class="table table-hover table-striped" id="dataTable">
-        <th>ImageUrl</th>
-        <th>Full Name</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>PhoneNumber</th>
-        <th>Type</th>
-        <th>Request Details</th>
-        <th>Actions</th>
+    <div class="col-md-10 offset-md-2">
+      <div class="search-div" style="margin-top: 20px;">
+        <mat-form-field class="search-field">
+          <input
+            matInput
+            [(ngModel)]="searchKey"
+            placeholder="Enter Key Words To search"
+            autocomplete="off"
+            (keyup)="applyFilter()"
+          />
+          <button
+            mat-button
+            matSuffix
+            mat-icon-button
+            aria-label="clear"
+            (click)="onSearchClear()"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
 
-        <tr *ngFor="let data of request">
-          <td><img [src]="data.imageUrl" alt="image" /></td>
-          <td>{{ data.fullname }}</td>
-          <td>{{ data.email }}</td>
-          <td>{{ data.address }}</td>
-          <td>{{ data.phonenumber }}</td>
-          <td>{{ data.requestType }}</td>
-          <td>{{ data.requestDetails }}</td>
-          <td class="d-flex">
-            <button
-              mdbBtn
-              color="success"
-              size="sm"
-              mdbWavesEffect
-              (click)="editRequest(data)"
-            >
-              <img
-                src="../../../../assets/images/icons/edit-w.png"
-                alt="edit.png"
-                class="icon-size"
-              />
-            </button>
-            <button mdbBtn color="danger" size="sm" mdbWavesEffect>
-              <img
-                src="../../../../assets/images/icons/delete.png"
-                alt="delete.png"
-                class="icon-size"
-              />
-            </button>
-          </td>
+      <!-- Main Table -->
+      <mat-table [dataSource]="listData" class="mat-elevation-z8" matSort>
+        <!-- <input type="hidden" value="{{}}"> -->
+        <ng-container matColumnDef="imageUrl">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Images
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <img
+              src="{{ element.imageUrl }}"
+              class="image-size"
+              alt="{{ element.fullname }}"
+          /></mat-cell>
+        </ng-container>
 
-          <!-- body -->
-        </tr>
-      </table>
+        <ng-container matColumnDef="fullname">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Full Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.fullname }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Email
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Address
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.address }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="mobile">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Mobile
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.mobile }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="requestType">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            RequestType
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.requestType }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="requestDetail">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            RequestDetails
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.requestDetail }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="loading">
+          <mat-footer-cell *matFooterCellDef aria-colspan="6">
+            loading Data...
+          </mat-footer-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="noData">
+          <mat-footer-cell *matFooterCellDef aria-colspan="6">
+            No Data
+          </mat-footer-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-raised-button color="primary" (click)="onEdit(row)">
+              <mat-icon>launch</mat-icon>
+            </button>
+            <button mat-raised-button color="warn" (click)="onDelete(row.$key)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        <mat-footer-row
+          *matFooterRowDef="['loading']"
+          [ngClass]="{ hide: listData != null }"
+        >
+        </mat-footer-row>
+
+        <mat-footer-row
+          *matFooterRowDef="['noData']"
+          [ngClass]="{ hide: !(listData != null && listData.data.length == 0) }"
+        ></mat-footer-row>
+      </mat-table>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 15, 20]"
+        [pageSize]="5"
+        showFirstLastButtons
+      ></mat-paginator>
     </div>
   </div>
 </div>
