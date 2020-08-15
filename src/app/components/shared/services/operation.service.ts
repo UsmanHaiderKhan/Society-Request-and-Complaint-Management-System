@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import * as _ from 'lodash';
 @Injectable({
   providedIn: 'root',
 })
 export class OperationService {
-  requetList: AngularFireList<any>;
-
   constructor(public firebase: AngularFireDatabase) {}
+  requetList: AngularFireList<any>;
 
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
     fullname: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.email),
-    address: new FormControl(''),
-    mobile: new FormControl('', [
-      Validators.required,
-      Validators.minLength(11),
-    ]),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    address: new FormControl('', Validators.required),
+    mobile: new FormControl('', [Validators.required]),
     requestType: new FormControl(1),
     imageUrl: new FormControl(''),
     requestDetail: new FormControl(''),
@@ -36,24 +32,30 @@ export class OperationService {
       requestDetail: '',
     });
   }
-
-  //Add Method
-  submitRequest(Request) {
-    this.requetList.push({
-      fullname: Request.fullname,
-      email: Request.email,
-      address: Request.address,
-      mobile: Request.mobile,
-      requestType: Request.gender,
-      imageUrl: Request.imageUrl,
-      requestDetail: Request.requestDetail,
-    });
-  }
   //Get Method
-  getAllRequests(): Observable<any> {
+  getAllRequests() {
     this.requetList = this.firebase.list('request');
     return this.requetList.snapshotChanges();
-  } //Update Method
+  }
+  //Add Method
+  submitRequest(request) {
+    this.requetList = this.firebase.list('request');
+    this.requetList.push({
+      fullname: request.fullname,
+      email: request.email,
+      address: request.address,
+      mobile: request.mobile,
+      requestType: request.requestType,
+      imageUrl: request.imageUrl,
+      requestDetail: request.requestDetail,
+    });
+  }
+
+  // getEmployees() {
+  //   this.re = this.firebase.list('employees');
+  //   return this.employeeList.snapshotChanges();
+  // }
+  //Update Method
   updateRequest(request) {
     this.requetList.update(request.$key, {
       fullname: request.fullname,
@@ -69,4 +71,8 @@ export class OperationService {
   deleteRequestData($key: string) {
     this.requetList.remove($key);
   }
+  //
+  // editForm(request) {
+  //   this.form.setValue(_.omit(request));
+  // }
 }
