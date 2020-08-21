@@ -8,34 +8,35 @@
         <p>
           As Soon as Poosible we try to complete your request.ThankYou!
         </p>
-        <form (submit)="submitRequest()" [form]>
+        <form
+          class="normal-form"
+          (submit)="submitRequest(operationService.form.value)"
+          [formGroup]="operationService.form"
+        >
           <div class="row">
             <div class="col-md-6">
               <!--Full Name -->
               <input
                 type="text"
-                name="fullname"
-                id="defaultSubscriptionFormName"
                 class="form-control mb-4"
                 placeholder="FullName"
+                formControlName="fullname"
               />
             </div>
             <div class="col-md-6">
               <!-- Email -->
               <input
                 type="email"
-                name="email"
-                id="defaultSubscriptionFormEmail"
                 class="form-control mb-4"
                 placeholder="E-mail"
+                formControlName="email"
               />
             </div>
           </div>
           <!-- Address -->
           <input
             type="text"
-            name="address"
-            id="defaultSubscriptionFormAddress"
+            formControlName="address"
             class="form-control mb-4"
             placeholder="Address"
           />
@@ -44,15 +45,14 @@
               <!-- PhoneNumber -->
               <input
                 type="number"
-                name="phonenumber"
-                id="defaultSubscriptionFormPhonenumber"
+                formControlName="mobile"
                 class="form-control mb-4"
                 placeholder="Phone Number"
               />
             </div>
             <div class="col-md-6">
               <!-- Request Type -->
-              <select class="form-control mb-4" name="requestType">
+              <select class="form-control mb-4" formControlName="requestType">
                 <option value="disabled" disabled
                   >-- Select Request-Type --</option
                 >
@@ -70,7 +70,7 @@
             <div class="form-group">
               <div class="img-border mx-auto shadow">
                 <img
-                  [src]="imageUrl"
+                  [src]="imgSrc"
                   alt=""
                   class="img-size"
                   (click)="fileUploader.click()"
@@ -82,7 +82,7 @@
             <input
               type="file"
               accept="image/*"
-              name="imageUrl"
+              formControlName="imageUrl"
               class="form-control"
               #fileUploader
               (change)="showImagePreview($event)"
@@ -91,19 +91,12 @@
           <!-- Detail Request -->
           <textarea
             rows="8"
-            name="requestDetails"
+            formControlName="requestDetail"
             class="form-control mt-4"
-            id="defaultSubscriptionFormRequestDetails"
             placeholder="Write Your Request"
           ></textarea>
           <!-- Sign in button -->
-          <button
-            mat-rasied-button
-            color="success"
-            block="true"
-            (click)="submitRequest()"
-            class="mt-4"
-          >
+          <button mat-raised-button color="success" block="true" class="mt-4">
             Submit Request
           </button>
         </form>
