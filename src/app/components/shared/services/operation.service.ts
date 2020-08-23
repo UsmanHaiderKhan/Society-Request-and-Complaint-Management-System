@@ -7,13 +7,14 @@ import * as _ from 'lodash';
 })
 export class OperationService {
   constructor(public firebase: AngularFireDatabase) {}
-  requetList: AngularFireList<any>;
+  requestList: AngularFireList<any>;
 
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
     fullname: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
     address: new FormControl('', Validators.required),
+    // requestDate: new FormControl(''),
     mobile: new FormControl('', [Validators.required]),
     requestType: new FormControl(1),
     imageUrl: new FormControl(''),
@@ -26,6 +27,7 @@ export class OperationService {
       fullname: '',
       email: '',
       address: '',
+      // requestDate: '',
       mobile: '',
       requestType: '1',
       imageUrl: '',
@@ -34,16 +36,17 @@ export class OperationService {
   }
   //Get Method
   getAllRequests() {
-    this.requetList = this.firebase.list('request');
-    return this.requetList.snapshotChanges();
+    this.requestList = this.firebase.list('request');
+    return this.requestList.snapshotChanges();
   }
   //Add Method
   submitRequest(request) {
-    this.requetList = this.firebase.list('request');
-    this.requetList.push({
+    this.requestList = this.firebase.list('request');
+    this.requestList.push({
       fullname: request.fullname,
       email: request.email,
       address: request.address,
+      // requestDate: request.requestDate,
       mobile: request.mobile,
       requestType: request.requestType,
       imageUrl: request.imageUrl,
@@ -51,16 +54,13 @@ export class OperationService {
     });
   }
 
-  // getEmployees() {
-  //   this.re = this.firebase.list('employees');
-  //   return this.employeeList.snapshotChanges();
-  // }
   //Update Method
   updateRequest(request) {
-    this.requetList.update(request.$key, {
+    this.requestList.update(request.$key, {
       fullname: request.fullname,
       email: request.email,
       address: request.address,
+      // requestDate: request.requestDate,
       mobile: request.mobile,
       requestType: request.requestType,
       imageUrl: request.imageUrl,
@@ -69,10 +69,10 @@ export class OperationService {
   }
   //Delete Method
   deleteRequestData($key: string) {
-    this.requetList.remove($key);
+    this.requestList.remove($key);
   }
   //
-  // editForm(request) {
-  //   this.form.setValue(_.omit(request));
-  // }
+  editForm(request) {
+    this.form.setValue(_.omit(request));
+  }
 }
