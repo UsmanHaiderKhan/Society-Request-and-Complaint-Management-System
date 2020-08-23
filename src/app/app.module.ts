@@ -33,10 +33,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { AdminheaderComponent } from './components/admin/adminheader/adminheader.component';
 import { HeaderComponent } from './components/home/header/header.component';
 import { ModalComponent } from './components/admin/modal/modal.component';
-import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -73,7 +78,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatInputModule,
     MatSelectModule,
-
+    MatPaginatorModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     // forRoot(),
     BrowserAnimationsModule,
   ],
