@@ -19,3 +19,27 @@
     background: $light-color;
   }
 }
+.hide {
+  display: none;
+}
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}
+.search-field {
+  width: 50%;
+}
+
+.mat-snack-bar-container {
+  color: rgba(255, 255, 255, 0.7);
+  background-color: red !important;
+}
+
+.image-size {
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+}
+button {
+  margin: 0 5px;
+}
