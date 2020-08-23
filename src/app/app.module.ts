@@ -31,9 +31,12 @@ import { MatCardModule, MatCard } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 import { AdminheaderComponent } from './components/admin/adminheader/adminheader.component';
 import { HeaderComponent } from './components/home/header/header.component';
 import { ModalComponent } from './components/admin/modal/modal.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,10 @@ import { ModalComponent } from './components/admin/modal/modal.component';
     MatBadgeModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatTableModule,
+    MatInputModule,
+    MatSelectModule,
+
     // forRoot(),
     BrowserAnimationsModule,
   ],
