@@ -1,8 +1,8 @@
 <!-- Main Body -->
-<div class="container">
+<div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-10 offset-md-2">
-      <div class="search-div" style="margin-top: 20px;">
+    <div class="col-md-11 offset-md-1">
+      <div class="search-div">
         <mat-form-field class="search-field">
           <input
             matInput
@@ -24,7 +24,7 @@
       </div>
 
       <!-- Main Table -->
-      <mat-table [dataSource]="listData" class="mat-elevation-z8" matSort>
+      <mat-table [dataSource]="listData" matSort>
         <!-- <input type="hidden" value="{{}}"> -->
         <ng-container matColumnDef="imageUrl">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -102,10 +102,18 @@
           <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
           <mat-cell *matCellDef="let row">
             <button mat-raised-button color="primary" (click)="onEdit(row)">
-              <mat-icon>launch</mat-icon>
+              <img
+                src="../../../../assets/images/icons/edit-w.png"
+                class="icon-size"
+                alt=""
+              />
             </button>
             <button mat-raised-button color="warn" (click)="onDelete(row.$key)">
-              <mat-icon>delete_outline</mat-icon>
+              <img
+                src="../../../../assets/images/icons/delete.png"
+                class="icon-size"
+                alt=""
+              />
             </button>
           </mat-cell>
         </ng-container>

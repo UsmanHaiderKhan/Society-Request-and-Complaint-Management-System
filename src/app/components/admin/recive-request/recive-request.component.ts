@@ -65,14 +65,14 @@ export class ReciveRequestComponent implements OnInit {
     });
   }
 
-  public editRequest(request) {
-    request.editfullname = request.fullname;
-    request.editemail = request.email;
-    request.editaddress = request.address;
-    request.editphonenumber = request.phonenumber;
-    request.editrequestType = request.requestType;
-    request.editrequestDetails = request.requestDetails;
-  }
+  // public editRequest(request) {
+  //   request.editfullname = request.fullname;
+  //   request.editemail = request.email;
+  //   request.editaddress = request.address;
+  //   request.editphonenumber = request.phonenumber;
+  //   request.editrequestType = request.requestType;
+  //   request.editrequestDetails = request.requestDetails;
+  // }
 
   public deleteRequest($key: string) {
     this.operationService.deleteRequestData($key);
@@ -86,10 +86,12 @@ export class ReciveRequestComponent implements OnInit {
     this.listData.filter = this.searchKey.trim().toLowerCase();
   }
   onEdit(row) {
-    this.operationService.updateRequest(row);
+    this.operationService.editForm(row);
     let config = new MatDialogConfig();
 
-    (config.disableClose = true), (config.width = '60%');
+    (config.disableClose = true),
+      (config.width = '60%'),
+      (config.height = '80%');
     this.dialog.open(RequestComponent, config);
   }
   onDelete($key) {
