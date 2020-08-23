@@ -6,92 +6,155 @@
       <div class="text-center border border-light p-5 shadow-sm">
         <p class="h4 mb-4">Get Register Your Complain</p>
         <p>
-          We wil try to Solve Your Problem as Soon as Poosibly.ThankYou!
+          As Soon as Poosible we try to complete your Complain.ThankYou!
         </p>
-        <div class="row">
-          <div class="col-md-6">
-            <!--Full Name -->
-            <input
-              type="text"
-              id="defaultSubscriptionFormEmail"
-              class="form-control mb-4"
-              placeholder="FullName"
-              [(ngModel)]="fullname"
-            />
-          </div>
-          <div class="col-md-6">
-            <!-- Email -->
-            <input
-              type="email"
-              id="defaultSubscriptionFormEmail"
-              class="form-control mb-4"
-              placeholder="E-mail"
-              [(ngModel)]="email"
-            />
-          </div>
-        </div>
-
-        <!-- Address -->
-        <input
-          type="text"
-          id="defaultSubscriptionFormEmail"
-          class="form-control mb-4"
-          placeholder="Address"
-          [(ngModel)]="address"
-        />
-        <div class="row">
-          <div class="col-md-6">
-            <!-- PhoneNumber -->
-            <input
-              type="number"
-              id="defaultSubscriptionFormEmail"
-              class="form-control mb-4"
-              placeholder="Phone Number"
-              [(ngModel)]="phonenumber"
-            />
-          </div>
-          <div class="col-md-6">
-            <!-- Request Type -->
-            <select class="form-control mb-4" [(ngModel)]="complainType">
-              <option
-                *ngFor="let option of optionsSelect"
-                value="{{ option.value }}"
-                >{{ option.label }}</option
-              >
-            </select>
-          </div>
-        </div>
-
-        <!-- Do Request -->
-        <textarea
-          rows="8"
-          class="form-control"
-          [(ngModel)]="complainDetails"
-          placeholder="Please Write Your Complain"
-        ></textarea>
-        <!-- Sign in button -->
-        <button
-          mdbBtn
-          (click)="submitComplain()"
-          color="success"
-          block="true"
-          class="mt-4"
-          [disabled]="
-            !fullname ||
-            !email ||
-            !address ||
-            !phonenumber ||
-            !complainType ||
-            !complainDetails
-          "
+        <form
+          class="normal-form"
+          (submit)="submitComplain(complainService.form.value)"
+          [formGroup]="complainService.form"
         >
-          Sign in
-        </button>
-        <div class="form-group">
-          <p class="bg-green">{{ message }}</p>
-        </div>
-      </div>
+          <input type="hidden" formControlName="$key" />
+          <div class="row">
+            <div class="col-md-6">
+              <!--Full Name -->
+              <mat-form-field class="example-form-field">
+                <mat-label>Full Name</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="Full Name"
+                  formControlName="fullname"
+                />
+                <mat-error
+                  *ngIf="
+                    complainService.form.controls['fullname'].errors?.required
+                  "
+                  >Name Field is Required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <!-- Email -->
+              <mat-form-field class="example-form-field">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+                <mat-error
+                  *ngIf="
+                    complainService.form.controls['email'].errors?.required
+                  "
+                  >Email Field is Required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <!-- Address -->
+          <mat-form-field class="example-form-field">
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              type="address"
+              placeholder="Address"
+              formControlName="address"
+            />
+            <mat-error
+              *ngIf="complainService.form.controls['address'].errors?.required"
+              >Address Field is Required</mat-error
+            >
+          </mat-form-field>
 
+          <div class="row">
+            <div class="col-md-6">
+              <!-- PhoneNumber -->
+              <mat-form-field class="example-form-field">
+                <mat-label>Phone Number</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="Phone Number"
+                  formControlName="mobile"
+                />
+                <mat-error
+                  *ngIf="
+                    complainService.form.controls['mobile'].errors?.required
+                  "
+                  >Number Field is Required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <!-- Complain Type -->
+              <mat-form-field class="example-form-field">
+                <mat-label>Complain Type</mat-label>
+                <mat-select formControlName="complainType" name="complainType">
+                  <mat-option
+                    *ngFor="let os of optionsSelect"
+                    value="{{ os.value }}"
+                    >{{ os.label }}</mat-option
+                  >
+                </mat-select></mat-form-field
+              >
+            </div>
+          </div>
+
+          <!-- File-Upload -->
+          <div class="row justify-content-center">
+            <div class="form-group">
+              <div class="img-border mx-auto shadow">
+                <img
+                  [src]="imgSrc"
+                  alt=""
+                  class="img-size"
+                  (click)="fileUploader.click()"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="file"
+              accept="image/*"
+              formControlName="imageUrl"
+              class="form-control"
+              #fileUploader
+              (change)="showImagePreview($event)"
+            />
+          </div>
+          <!-- Detail Complain -->
+          <mat-form-field class="example-form-field">
+            <mat-label>Complain Details</mat-label>
+            <textarea
+              matInput
+              rows="8"
+              type="text"
+              placeholder="Enter Your Complain"
+              formControlName="complainDetail"
+            ></textarea>
+            <mat-error
+              *ngIf="
+                complainService.form.controls['complainDetail'].errors?.required
+              "
+              >Complain Details Field is Required</mat-error
+            >
+          </mat-form-field>
+          <br /><br />
+          <!-- Sign in button -->
+          <button
+            [disabled]="complainService.form.invalid"
+            mat-raised-button
+            color="success"
+            block="true"
+            class="mt-4"
+          >
+            Submit Complain
+          </button>
+        </form>
+      </div>
       <!-- Default form subscription -->
     </div>
   </div>
