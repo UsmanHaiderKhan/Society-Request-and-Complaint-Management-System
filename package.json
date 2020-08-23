@@ -26,6 +26,7 @@
     "chart.js": "^2.9.3",
     "firebase": "^7.17.1",
     "font-awesome": "^4.7.0",
+    "lodash": "^4.17.20",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
