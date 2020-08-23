@@ -31,7 +31,7 @@ export class RequestComponent implements OnInit {
   submitRequest(formValue) {
     if (this.operationService.form.valid) {
       if (!this.operationService.form.get('$key').value) {
-        var filePath = `images/${this.selectedImage.name
+        var filePath = `images/request/${this.selectedImage.name
           .split('.')
           .slice(0, -1)
           .join('.')}_${new Date().getTime()}`;
@@ -73,7 +73,6 @@ export class RequestComponent implements OnInit {
   clearForm() {
     this.operationService.form.reset();
     this.operationService.onInitialLizeFormGroup();
-
     this.notificationService.openSnackBar('Submitted SuccessFully');
   }
 }

@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 <div class="container" id="request">
   <div class="row justify-content-center mt-5">
     <div class="col-md-10">
@@ -51,23 +51,39 @@
                 >
               </mat-form-field>
             </div>
-          </div>
-          <!-- Address -->
-          <mat-form-field class="example-form-field">
-            <mat-label>Address</mat-label>
-            <input
-              matInput
-              type="address"
-              placeholder="Address"
-              formControlName="address"
-            />
-            <mat-error
-              *ngIf="operationService.form.controls['address'].errors?.required"
-              >Address Field is Required</mat-error
-            >
-          </mat-form-field>
-
-          <div class="row">
+            <div class="col-md-6">
+              <!-- Address -->
+              <mat-form-field class="example-form-field">
+                <mat-label>Address</mat-label>
+                <input
+                  matInput
+                  type="address"
+                  placeholder="Address"
+                  formControlName="address"
+                />
+                <mat-error
+                  *ngIf="
+                    operationService.form.controls['address'].errors?.required
+                  "
+                  >Address Field is Required</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="example-form-field">
+                <mat-label>Select Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="dp3"
+                  formControlName="requestDate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dp3"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #dp3></mat-datepicker>
+              </mat-form-field>
+            </div>
             <div class="col-md-6">
               <!-- PhoneNumber -->
               <mat-form-field class="example-form-field">
