@@ -71,47 +71,29 @@ export class ReciveComplainComponent implements OnInit {
       };
     });
   }
-  public editComplain(complain) {
-    complain.editfullname = complain.fullname;
-    complain.editemail = complain.email;
-    complain.editaddress = complain.address;
-    complain.editphonenumber = complain.phonenumber;
-    complain.editcomplainType = complain.complainType;
-    complain.editcomplainDetails = complain.complainDetails;
-  }
+
   public deleteComplain(complainId) {
     this.complainService.deleteComplainData(complainId);
-  }
-  public updateComplain(recordComplain) {
-    let complain = {};
-    complain['fullname'] = recordComplain.editfullname;
-    complain['email'] = recordComplain.editemail;
-    complain['phonenumber'] = recordComplain.editphonenumber;
-    complain['address'] = recordComplain.editaddress;
-    complain['complainType'] = recordComplain.editcomplainType;
-    complain['complainDetails'] = recordComplain.editcomplainDetails;
-    // here calling service
-    this.complainService.updateComplain(complain);
-  }
-  public deleteRequest($key: string) {
-    this.complainService.deleteComplainData($key);
   }
 
   onSearchClear() {
     this.searchKey = '';
     this.applyFilter();
   }
+
   applyFilter() {
     this.listData.filter = this.searchKey.trim().toLowerCase();
   }
 
   onEdit(row) {
-    this.complainService.updateComplain(row);
+    this.complainService.complainEditForm(row);
     let config = new MatDialogConfig();
 
-    (config.disableClose = true), (config.width = '60%');
+    // (config.disableClose = true),
+    (config.width = '60%'), (config.height = '80%');
     this.dialog.open(ComplainComponent, config);
   }
+
   onDelete($key) {
     if (confirm('Are you Sure you Want to Delete Record?')) {
       this.complainService.deleteComplainData($key);
