@@ -50,11 +50,6 @@ export class ComplainService {
       complainDetail: complain.complainDetail,
     });
   }
-
-  // getEmployees() {
-  //   this.re = this.firebase.list('employees');
-  //   return this.employeeList.snapshotChanges();
-  // }
   //Update Method
   updateComplain(complain) {
     this.complainList.update(complain.$key, {
@@ -72,7 +67,7 @@ export class ComplainService {
     this.complainList.remove($key);
   }
   //
-  editForm(complain) {
+  complainEditForm(complain) {
     this.form.setValue(_.omit(complain));
   }
 }
