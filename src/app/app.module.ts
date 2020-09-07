@@ -42,6 +42,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AdminheaderComponent } from './components/admin/adminheader/adminheader.component';
 import { HeaderComponent } from './components/home/header/header.component';
 import { ModalComponent } from './components/admin/modal/modal.component';
+import { HeroComponent } from './components/home/hero/hero.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ModalComponent } from './components/admin/modal/modal.component';
     AdminheaderComponent,
     HeaderComponent,
     ModalComponent,
+    HeroComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +87,7 @@ import { ModalComponent } from './components/admin/modal/modal.component';
     // forRoot(),
     BrowserAnimationsModule,
   ],
+  exports: [HeaderComponent],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [OperationService, ComplainService, NotificationService],
   bootstrap: [AppComponent],

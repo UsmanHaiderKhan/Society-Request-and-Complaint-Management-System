@@ -7,24 +7,29 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ReciveRequestComponent } from './components/admin/recive-request/recive-request.component';
 import { ReciveComplainComponent } from './components/admin/recive-complain/recive-complain.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { HeroComponent } from './components/home/hero/hero.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    children: [
+      { path: '', component: HeroComponent },
+      {
+        path: 'hero',
+        component: HeroComponent,
+      },
+      {
+        path: 'complain',
+        component: ComplainComponent,
+      },
+      {
+        path: 'request',
+        component: RequestComponent,
+      },
+    ],
   },
-  {
-    path: 'home',
-    component: HomeComponent,
-  },
-  {
-    path: 'complain',
-    component: ComplainComponent,
-  },
-  {
-    path: 'request',
-    component: RequestComponent,
-  },
+
   {
     path: 'admin',
     component: AdminComponent,

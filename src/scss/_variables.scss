@@ -1,24 +1,24 @@
 @font-face {
   font-family: "poppins-regular";
-  src: url("../assets/fonts/Poppins-Regular.ttf");
+  src: url("/assets/fonts/Poppins-Regular.ttf");
 }
 @font-face {
   font-family: "poppins-Medium";
-  src: url("../assets/fonts/Poppins-Medium.ttf");
+  src: url("/assets/fonts/Poppins-Medium.ttf");
 }
 @font-face {
   font-family: "poppins-semibold";
-  src: url("../assets/fonts/Poppins-SemiBold.ttf");
+  src: url("/assets/fonts/Poppins-SemiBold.ttf");
 }
 @font-face {
   font-family: "poppins-bold";
-  src: url("../assets/fonts/Poppins-Bold.ttf");
+  src: url("/assets/fonts/Poppins-Bold.ttf");
 }
 
-$primary-font-regular: "poppins-regular";
-$primary-font-medium: "poppins-Medium";
-$primary-font-semibold: "poppins-semibold";
-$primary-font-bold: "poppins-bold";
+$primary-font-regular: "poppins-regular", sans serif;
+$primary-font-medium: "poppins-Medium", sans serif;
+$primary-font-semibold: "poppins-semibold", sans serif;
+$primary-font-bold: "poppins-bold", sans serif;
 
 $primary-color: #9cc026;
 $secondary-color: #007e33;
