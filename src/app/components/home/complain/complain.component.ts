@@ -3,6 +3,8 @@ import { ComplainService } from '../../shared/services/complain.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { NotificationService } from '../../shared/services/notification.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { OperationService } from '../../shared/services/operation.service';
 
 @Component({
   selector: 'app-complain',
@@ -16,7 +18,8 @@ export class ComplainComponent implements OnInit {
   constructor(
     public complainService: ComplainService,
     public notificationService: NotificationService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private dialog: MatDialogRef<ComplainService>
   ) {}
 
   ngOnInit() {
@@ -51,6 +54,7 @@ export class ComplainComponent implements OnInit {
           .subscribe();
       } else {
         this.complainService.updateComplain(formValue);
+        this.dialog.close();
       }
     }
   }
