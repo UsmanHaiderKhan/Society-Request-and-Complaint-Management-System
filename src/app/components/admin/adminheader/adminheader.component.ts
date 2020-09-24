@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OperationService } from '../../shared/services/operation.service';
 
 @Component({
   selector: 'app-adminheader',
@@ -7,20 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminheaderComponent implements OnInit {
   showFiller = false;
-  navBarItems: Array<any>;
   currentSelected = 'home';
-  constructor() {
-    this.navBarItems = [
-      { name: 'Home', link: 'home' },
-      { name: 'About', link: 'about' },
-      { name: 'Services', link: 'services' },
-      { name: 'Gallery', link: 'gallery' },
-    ];
-  }
+  count: number = 0;
+  constructor(private requestService: OperationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.totalCount();
+  }
   onSelected(navlink: string) {
     this.currentSelected = navlink;
     console.log(navlink);
+  }
+  totalCount() {
+    this.requestService.getAllRequests().subscribe((res) => {
+      this.count = res.length;
+      console.log(this.count);
+    });
   }
 }
