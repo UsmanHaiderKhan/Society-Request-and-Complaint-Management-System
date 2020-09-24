@@ -3,6 +3,7 @@ import { OperationService } from '../../shared/services/operation.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { NotificationService } from '../../shared/services/notification.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-request',
@@ -16,7 +17,8 @@ export class RequestComponent implements OnInit {
   constructor(
     public operationService: OperationService,
     public notificationService: NotificationService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private dialog: MatDialogRef<OperationService>
   ) {}
 
   ngOnInit() {
@@ -52,6 +54,7 @@ export class RequestComponent implements OnInit {
           .subscribe();
       } else {
         this.operationService.updateRequest(formValue);
+        this.dialog.close();
       }
     }
   }

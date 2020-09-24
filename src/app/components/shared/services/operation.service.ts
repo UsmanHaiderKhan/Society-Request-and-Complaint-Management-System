@@ -37,6 +37,7 @@ export class OperationService {
   //Get Method
   getAllRequests() {
     this.requestList = this.firebase.list('request');
+
     return this.requestList.snapshotChanges();
   }
   //Add Method
@@ -71,7 +72,7 @@ export class OperationService {
   deleteRequestData($key: string) {
     this.requestList.remove($key);
   }
-  //
+  // Edit Form Data
   editForm(request) {
     this.form.setValue(_.omit(request));
   }
